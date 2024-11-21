@@ -12,6 +12,13 @@ KEYCLOAK_URL = os.environ['KEYCLOAK_URL']
 CLIENT_ID = os.environ['CLIENT_ID']
 CLIENT_SECRET = os.environ['CLIENT_SECRET']
 
+if not KEYCLOAK_URL:
+    raise ValueError("KEYCLOAK_URL is not set")
+if not CLIENT_ID:
+    raise ValueError("CLIENT_ID is not set")
+if not CLIENT_SECRET:
+    raise ValueError("CLIENT_SECRET is not set")
+
 
 class Token(BaseModel):
     access_token: str
