@@ -16,7 +16,8 @@ CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 if not all([KEYCLOAK_URL, CLIENT_ID, CLIENT_SECRET]):
     raise ValueError("Missing one or more environment variables: KEYCLOAK_URL, CLIENT_ID, CLIENT_SECRET")
 
-KEYCLOAK_URL = KEYCLOAK_URL + '/protocol/openid-connect'
+if not KEYCLOAK_URL.rstrip('/').endswith('/protocol/openid-connect'):
+    KEYCLOAK_URL = KEYCLOAK_URL.rstrip('/') + '/protocol/openid-connect'
 
 # Modèle pour les données d'entrée
 class LoginRequest(BaseModel):
