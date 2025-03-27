@@ -29,7 +29,7 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 
-@app.post("/token", response_model=Token, tags=["Authentication"])
+@app.post("/auth/token", response_model=Token, tags=["Authentication"])
 async def get_token(login_request: LoginRequest):
     payload = {
         "client_id": CLIENT_ID,
