@@ -9,15 +9,14 @@ app = FastAPI(
 )
 
 # Chargement des variables d'environnement avec vérification
-KEYCLOAK_URL = os.getenv('KEYCLOAK_URL')
-CLIENT_ID = os.getenv('CLIENT_ID')
-CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+KEYCLOAK_HOST = os.getenv('KEYCLOAK_HOST')
+KEYCLOAK_REALM = os.getenv('KEYCLOAK_REALM')
+KEYCLOAK_CLIENT_ID = os.getenv('KEYCLOAK_CLIENT_ID')
+KEYCLOAK_CLIENT_SECRET = os.getenv('KEYCLOAK_CLIENT_SECRET')
+KEYCLOAK_URL = f"{KEYCLOAK_HOST}/realms/{KEYCLOAK_REALM}/protocol/openid-connect"
 
-if not all([KEYCLOAK_URL, CLIENT_ID, CLIENT_SECRET]):
-    raise ValueError("Missing one or more environment variables: KEYCLOAK_URL, CLIENT_ID, CLIENT_SECRET")
-
-if not KEYCLOAK_URL.rstrip('/').endswith('/protocol/openid-connect'):
-    KEYCLOAK_URL = KEYCLOAK_URL.rstrip('/') + '/protocol/openid-connect'
+if not all([KEYCLOAK_HOST, KEYCLOAK_REALM, KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET]):
+    raise ValueError("Missing one or more environment variables: KEYCLOAK_HOST, KEYCLOAK_REALM, KEYCLOAK_CLIENT_ID, KEYCLOAK_CLIENT_SECRET")
 
 # Modèle pour les données d'entrée
 class LoginRequest(BaseModel):
@@ -32,8 +31,8 @@ class Token(BaseModel):
 @app.post("/auth/token", response_model=Token, tags=["Authentication"])
 async def get_token(login_request: LoginRequest):
     payload = {
-        "client_id": CLIENT_ID,
-        "client_secret": CLIENT_SECRET,
+        "client_id": KEYCLOAK_CLIENT_ID,
+        "client_secret": KEYCLOAK_CLIENT_SECRET,
         "grant_type": "password",
         "username": login_request.username,
         "password": login_request.password,
