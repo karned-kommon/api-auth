@@ -5,7 +5,8 @@ import httpx
 
 app = FastAPI(
     title="Keycloak Authentication API",
-    description="Retrieve a token via Keycloak to access other APIs."
+    description="Retrieve a token via Keycloak to access other APIs.",
+    openapi_url="/auth/openapi.json"
 )
 
 # Chargement des variables d'environnement avec vérification
