@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 ENV APP_HOME=/app
-ENV PORT=80
+ENV PORT=8000
 
 EXPOSE $PORT
 
@@ -18,4 +18,4 @@ RUN pip install --upgrade pip \
 
 COPY main.py ./
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
