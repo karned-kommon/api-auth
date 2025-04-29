@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from routers import v1
 
 logging.basicConfig(level=logging.INFO)
-logging.info("Starting API Credential")
+logging.info("Starting API Auth")
 
 app = FastAPI(
     title="API Auth",
