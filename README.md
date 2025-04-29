@@ -24,3 +24,25 @@ Client Scopes tab in my-app settings
 If you have more than one client repeat the steps for the other clients as well and add the good-service scope. 
 The intention behind this is to isolate client access. The issued access token will only be valid for the intended audience.
 This is thoroughly described in Keycloak's documentation [1,2].
+
+## Configure new API 
+Go to https://iam.karned.bzh or keycloak admin interface
+- select karned realm
+- select clients
+- create new client
+- client id: api-credential (for example)
+- client protocol: openid-connect
+- next ... next ... save
+
+- select the new client
+- select the "Roles" tab
+- add role create (for example)
+- save
+
+- open groups
+- select existant group or create new group
+- add role to group : go to "Role Mappings" tab
+- select the role you want to add
+- click "Assign role"
+- select the role
+- click "Assign"
