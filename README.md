@@ -30,7 +30,7 @@ Go to https://iam.karned.bzh or keycloak admin interface
 - select karned realm
 - select clients
 - create new client
-- client id: api-credential (for example)
+- client id: api-auth (for example)
 - client protocol: openid-connect
 - next ... next ... save
 
