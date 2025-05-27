@@ -1,6 +1,8 @@
 import logging
 
 from fastapi import FastAPI
+
+from middlewares.cors_middleware import CORSMiddleware
 from routers import v1
 
 logging.basicConfig(level=logging.INFO)
@@ -12,5 +14,6 @@ app = FastAPI(
     openapi_url="/auth/openapi.json"
 )
 
-# Include routers
+
+app.add_middleware(CORSMiddleware)
 app.include_router(v1.router)
