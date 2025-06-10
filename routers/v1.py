@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from fastapi.responses import JSONResponse
 
 from config.config import API_TAG_NAME
 from models.item_model import LoginRequest, Token, TokenRenewRequest
