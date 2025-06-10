@@ -17,11 +17,7 @@ class SuccessResponse(BaseModel, Generic[T]):
     message: str = "Operation completed successfully"
 
 def create_success_response(data: Any, message: str = "Operation completed successfully") -> Dict:
-    return {
-        "status": "success",
-        "data": data,
-        "message": message
-    }
+    return SuccessResponse(data=data, message=message).dict()
 
 def create_error_response(code: str, message: str) -> Dict:
     return {
