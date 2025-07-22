@@ -3,7 +3,11 @@ FROM python:3.12-slim
 ENV APP_HOME=/app
 ENV PORT=8000
 
-EXPOSE $PORT
+ENV PYTHONUNBUFFERED=True \
+    PORT=8000 \
+    WORKERS=1 \
+    API_NAME=api-auth \
+    API_TAG_NAME=authentification
 
 WORKDIR $APP_HOME
 
